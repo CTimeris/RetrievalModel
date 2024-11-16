@@ -83,7 +83,7 @@ def ItemCF_rec(user_id, user_item_dict, i2i_sim, last_n, sim_item_topk, recall_i
 
 
 if __name__ == '__main__':
-    # 交互记录
+    # 用户-物品索引
     user_item = {
         1: {1, 3, 5, 7, 10},
         2: {1, 2, 3, 4, 6, 7, 8},

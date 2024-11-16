@@ -73,7 +73,7 @@ def UserCF_rec(user_id, user_item_dict, u2u_sim, last_n, sim_user_topk, recall_i
 
 
 if __name__ == '__main__':
-    # 交互记录
+    # 用户-物品索引
     user_item = {
         1: {1, 3, 5, 7, 10},
         2: {1, 2, 3, 4, 6, 7, 8},
@@ -84,6 +84,7 @@ if __name__ == '__main__':
         7: {4, 6, 8, 10}
     }
     hot_items = {3, 100, 1000}  # 热门物品池
+    # 物品-用户索引
     item_user = {
         1: {1, 2, 3},
         2: {2, 4},
