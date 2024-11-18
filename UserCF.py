@@ -4,7 +4,7 @@ from collections import defaultdict
 from tqdm import tqdm
 
 
-def UserCF_sim(item_user_dict):
+def usercf_sim(item_user_dict):
     """
     用户相似性矩阵计算，与itemcf几乎一样
     :param item_user_dict: {{item1: user1, user2...}, item2:...}
@@ -32,7 +32,7 @@ def UserCF_sim(item_user_dict):
     return u2u_sim_
 
 
-def UserCF_rec(user_id, user_item_dict, u2u_sim, last_n, sim_user_topk, recall_item_num, item_topk_click):
+def usercf_rec(user_id, user_item_dict, u2u_sim, last_n, sim_user_topk, recall_item_num, item_topk_click):
     """
     每个用户找到最相似的k个用户，找它们近期最感兴趣的n个物品，取分数最高的nk个物品作为召回结果
     :param user_id: 用户id
@@ -97,10 +97,10 @@ if __name__ == '__main__':
         9: {4, 5},
         10: {1, 3, 5, 7}
     }
-    sim_matrix = UserCF_sim(item_user)
+    sim_matrix = usercf_sim(item_user)
     last_n = 5  # 最近的n个交互
     sim_k = 2  # 每个物品找k个相似的
     recall_num = 3  # 一共召回num个
     userid = 1
-    recall_items = UserCF_rec(userid, user_item, sim_matrix, last_n, sim_k, recall_num, hot_items)
+    recall_items = usercf_rec(userid, user_item, sim_matrix, last_n, sim_k, recall_num, hot_items)
     print(recall_items)

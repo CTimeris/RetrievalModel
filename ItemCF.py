@@ -4,7 +4,7 @@ from collections import defaultdict
 from tqdm import tqdm
 
 
-def ItemCF_sim(user_item_dict):
+def itemcf_sim(user_item_dict):
     """
     物品与物品之间的相似性矩阵计算
     :param user_item_dict: 用户交互序列  {user1:{item1, item2, ...}, user2...}
@@ -38,7 +38,7 @@ def ItemCF_sim(user_item_dict):
     return i2i_sim_
 
 
-def ItemCF_rec(user_id, user_item_dict, i2i_sim, last_n, sim_item_topk, recall_item_num, item_topk_click):
+def itemcf_rec(user_id, user_item_dict, i2i_sim, last_n, sim_item_topk, recall_item_num, item_topk_click):
     """
     根据历史交互的n个物品，每个物品找回最相似的k个物品，计算nk个物品的兴趣分数，取前num个作为召回结果
     :param user_id: 用户id
@@ -95,13 +95,13 @@ if __name__ == '__main__':
     }
     hot_items = {3, 100, 1000}  # 热门物品池
 
-    sim_matrix = ItemCF_sim(user_item)
+    sim_matrix = itemcf_sim(user_item)
     # 线上召回通常在计算相似度矩阵后维护一个索引{item: {item1, item2 ...}，快速找到top_k相似物品
     last_n = 5  # 最近的n个交互
     sim_k = 2  # 每个物品找k个相似的
     recall_num = 3  # 一共召回num个
     userid = 1
-    recall_items = ItemCF_rec(userid, user_item, sim_matrix, last_n, sim_k, recall_num, hot_items)
+    recall_items = itemcf_rec(userid, user_item, sim_matrix, last_n, sim_k, recall_num, hot_items)
     print(recall_items)
 
 # ItemCF只要两个物品重合比例高的用户就判定为相似，假如用户在同一个小圈子（同一个群，被分享）
